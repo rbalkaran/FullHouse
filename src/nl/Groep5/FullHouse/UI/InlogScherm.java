@@ -33,12 +33,12 @@ public class InlogScherm implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        PreparedStatement ps = Main.mysqlConnection.prepareStatement("select user, pass from logins where user = ? and pass = ?");
+        PreparedStatement ps = Main.getMySQLConnection().prepareStatement("select user, pass from logins where user = ? and pass = ?");
         try {
             ps.setString(1, txtUser.getText());
             ps.setString(2, new String(txtPassword.getPassword()));
 
-            ResultSet rs = Main.mysqlConnection.query(ps);
+            ResultSet rs = Main.getMySQLConnection().query(ps);
             if(rs.next()){
                 new MainScherm();
                 frame.dispose();

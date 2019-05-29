@@ -72,3 +72,4 @@ fabric.properties
 # My local files
 .idea/
 FullHouse.zip
+/config.config

@@ -1,19 +1,45 @@
 package nl.Groep5.FullHouse;
 
 import nl.Groep5.FullHouse.UI.InlogScherm;
-import nl.Groep5.FullHouse.UI.MainScherm;
 
 import javax.swing.*;
+import java.io.*;
 import java.sql.ResultSet;
+import java.util.Properties;
 
 public class Main {
 
-    // Gebruik dit object om met de database te communiceren
-    // voor zelf gebruik moet je waarschijnlijk info aanpassen
-    public final static MySQLConnector mysqlConnection = new MySQLConnector("localhost", "javaopdr", "root", "toor");
-
+    private static MySQLConnector mysqlConnection;
 
     public static void main(String[] args) {
+        Properties props = new Properties();
+        try {
+            props.load(new FileInputStream("config.config"));
+        } catch (IOException e) {
+//            e.printStackTrace();
+
+            try {
+                PrintWriter writer = new PrintWriter("config.config", "UTF-8");
+
+                writer.println("host=");
+                writer.println("database=");
+                writer.println("username=");
+                writer.println("password=");
+                writer.close();
+                System.out.println("config bestand gemaakt, bewerk deze voor gebruik");
+                return;
+            } catch (FileNotFoundException | UnsupportedEncodingException e1) {
+                e1.printStackTrace();
+            }
+        }
+
+        if(props.containsKey("host") && props.containsKey("database") && props.containsKey("username") && props.containsKey("password")) {
+            mysqlConnection = new MySQLConnector(props.getProperty("host"), props.getProperty("database"), props.getProperty("username"), props.getProperty("password"));
+        }else{
+            System.out.println("Missing mysql info, exiting");
+            return;
+        }
+
 
         // Als de applicatie sluit, sluit dan ook de connectie met DB op een nette manier
         Runtime.getRuntime().addShutdownHook(new Thread(Main.mysqlConnection::close));
@@ -26,44 +52,6 @@ public class Main {
             mysqlConnection.update(mysqlConnection.prepareStatement("INSERT INTO logins(`user`, `pass`) values('test', 'test')"));
         }
 
-
-//        MySQLConnector connector = new MySQLConnector("localhost", "javaopdr", "root", "toor");
-//
-//        if(connector.hasConnection()) {
-//            PreparedStatement ps = connector.prepareStatement("select * from book");
-//            ResultSet rs = connector.query(ps);
-//
-//            try {
-//                while (rs.next()) {
-//                    System.out.println(rs.getString("author") + " - " + rs.getString("title"));
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//
-//
-//            Scanner scanner = new Scanner(System.in);
-//            System.out.println("Title van boek: ");
-//            String newTitle = scanner.next();
-//
-//            System.out.println("Author: ");
-//            String newAuthor = scanner.next();
-//
-//            PreparedStatement newPS = connector.prepareStatement("insert into book (author, title) VALUES (?, ?);");
-//            try {
-//                newPS.setString(1, newTitle);
-//                newPS.setString(2, newAuthor);
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//                return;
-//            }
-//            connector.update(newPS);
-//
-//
-//            connector.close();
-//        }
-
-
         try {
             // zet de style naar de operatie systeem style (voor meeste van ons, windows style)
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -72,7 +60,10 @@ public class Main {
             System.out.println("Unsupported Look and feel, defaulting to normal");
         }
 
-
         new InlogScherm();
+    }
+
+    public static MySQLConnector getMySQLConnection() {
+        return mysqlConnection;
     }
 }
