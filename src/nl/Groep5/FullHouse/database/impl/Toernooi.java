@@ -4,11 +4,7 @@ import nl.Groep5.FullHouse.Main;
 import nl.Groep5.FullHouse.database.DatabaseHelper;
 import nl.Groep5.FullHouse.database.MySQLConnector;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.sql.Date;
+import java.sql.*;
 import java.util.List;
 
 /**
@@ -132,24 +128,26 @@ public class Toernooi {
 
     /**
      * Probeer speler in te schrijven voor dit toernooi
+     *
      * @param speler om te registreren
      * @return true als registratie gelukt is, false als het niet gelukt is (bijvoorbeeld omdat het vol is)
      */
-    public boolean voegSpelerToe(Speler speler, Boolean heeftBetaald)throws SQLException{
+    public boolean voegSpelerToe(Speler speler, Boolean heeftBetaald) throws SQLException {
         return DatabaseHelper.registreerSpelerVoorToernooi(this, speler, heeftBetaald);
     }
 
     /**
      * Kijk of de toernooi vol zit kwa inschrijvingen
+     *
      * @return true als de inschrijven de maximaleAantal overschrijft
      * <br>
      * <br>
-     *     het returned ook true als er een SQL fout opgetreden is !!
+     * het returned ook true als er een SQL fout opgetreden is !!
      */
-    public boolean isVol(){
+    public boolean isVol() {
         try {
             return this.getInschrijvingen().size() >= this.getMaxAantalInschrijvingen();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return true;
@@ -158,6 +156,7 @@ public class Toernooi {
 
     /**
      * Nieuw toernooi opslaan
+     *
      * @return true als toernooi is opgeslagen in database
      * @throws SQLException
      */
@@ -172,10 +171,11 @@ public class Toernooi {
 
     /**
      * Update bestaande Toernooi
+     *
      * @return True als het geupdate is
      * @throws SQLException
      */
-    public boolean Update() throws SQLException{
+    public boolean Update() throws SQLException {
         MySQLConnector mysql = Main.getMySQLConnection();
         PreparedStatement ps = mysql.prepareStatement("UPDATE `toernooi` SET `naam`=?, `datum`=?, `beginTijd`=?, `eindTijd`=?, `beschrijving`=?, `maxInschrijvingen`=?, `inleg`=?, `uitersteInschrijfDatum`=?, `locatieID`=? WHERE `ID`='?';");
         FillPrepareStatement(ps);

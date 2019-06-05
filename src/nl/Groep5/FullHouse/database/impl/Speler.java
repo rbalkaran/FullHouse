@@ -174,6 +174,7 @@ public class Speler {
 
     /**
      * Nieuwe speler opslaan
+     *
      * @return true als nieuwe speler is opgeslagen
      * @throws SQLException
      */
@@ -188,10 +189,11 @@ public class Speler {
 
     /**
      * Speler bewerken
+     *
      * @return True als speler bewerkt is
      * @throws SQLException
      */
-    public boolean Update() throws SQLException{
+    public boolean Update() throws SQLException {
         MySQLConnector mysql = Main.getMySQLConnection();
         PreparedStatement ps = mysql.prepareStatement("UPDATE `speler` SET `voornaam`=?, `tussenvoegsel`=?, `achternaam`=?, `adres`=?, `postcode`=?, `woonplaats`=?, `telefoonnummer`=?, `email`=?, `geslacht`=?, `geboortedatum`=?, `leeftijd`=?, `rating`=? WHERE `ID`=?;");
         FillPrepareStatement(ps);
@@ -217,10 +219,11 @@ public class Speler {
 
     /**
      * Probeer alle persoonsgevoelige informatie te verwijderen uit database
+     *
      * @return true als het gelukt is
      * @throws SQLException
      */
-    public boolean AVGClear() throws SQLException{
+    public boolean AVGClear() throws SQLException {
         this.setVoornaam("[verwijderd]");
         this.setTussenvoegsel("[verwijderd]");
         this.setAchternaam("[verwijderd]");

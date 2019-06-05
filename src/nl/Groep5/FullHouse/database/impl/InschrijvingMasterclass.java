@@ -46,25 +46,28 @@ public class InschrijvingMasterclass {
 
     /**
      * Verkrijg de {@link Speler} van deze inschrijving
+     *
      * @return {@link Speler} van deze inschrijving
      * @throws SQLException
      */
-    public Speler getSpeler() throws SQLException{
+    public Speler getSpeler() throws SQLException {
         return DatabaseHelper.verkrijgSpelerBijId(spelerID);
     }
 
     /**
      * Verkrijg de {@link MasterClass} van deze inschrijving
+     *
      * @return {@link MasterClass} van deze inschrijving
      * @throws SQLException
      */
-    public MasterClass getMasterClass() throws SQLException{
+    public MasterClass getMasterClass() throws SQLException {
         return DatabaseHelper.verkrijgMasterClassById(masterclassID);
     }
 
 
     /**
      * Nieuwe inschrijving opslaan
+     *
      * @return True als inschrijving is opgeslagen
      * @throws SQLException
      */
@@ -82,10 +85,11 @@ public class InschrijvingMasterclass {
 
     /**
      * Bewerk inschrijving
+     *
      * @return True als inschrijving is bewerkt
      * @throws SQLException
      */
-    public boolean Update() throws SQLException{
+    public boolean Update() throws SQLException {
         MySQLConnector mysql = Main.getMySQLConnection();
         PreparedStatement ps = mysql.prepareStatement("UPDATE `18086632`.`inschrijving_masterclass` SET `betaald`=? WHERE `spelerID`=? and `masterclassID`=?;");
 
@@ -99,10 +103,11 @@ public class InschrijvingMasterclass {
 
     /**
      * Verwijder inschrijving voor als de speler niet meer wilt/kan of de masterclass is afgelast
+     *
      * @return True als inschrijving verwijderd is
      * @throws SQLException
      */
-    public boolean Delete() throws SQLException{
+    public boolean Delete() throws SQLException {
         MySQLConnector mysql = Main.getMySQLConnection();
         PreparedStatement ps = mysql.prepareStatement("DELETE FROM `inschrijving_masterclass` WHERE `spelerID`=? and `masterclassID`=?;");
 

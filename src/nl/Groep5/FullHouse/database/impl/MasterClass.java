@@ -137,6 +137,7 @@ public class MasterClass {
 
     /**
      * Nieuwe masterclass opslaan
+     *
      * @return True als masterclass opgeslagen is
      * @throws SQLException
      */
@@ -151,10 +152,11 @@ public class MasterClass {
 
     /**
      * Bestaande masterclass updaten
+     *
      * @return True als masterclass geupdate is
      * @throws SQLException
      */
-    public boolean Update() throws SQLException{
+    public boolean Update() throws SQLException {
         MySQLConnector mysql = Main.getMySQLConnection();
         PreparedStatement ps = mysql.prepareStatement("UPDATE `masterclass` SET `datum`=?, `beginTijd`=?, `eindTijd`=?, `kosten`=?, `minRating`=?, `maxInschrijvingen`=?, `locatieID`=? WHERE `ID`=?;");
         FillPrepareStatement(ps);
@@ -164,7 +166,7 @@ public class MasterClass {
         return mysql.update(ps) == 1;
     }
 
-    private void FillPrepareStatement(PreparedStatement ps) throws SQLException{
+    private void FillPrepareStatement(PreparedStatement ps) throws SQLException {
         ps.setDate(1, this.datum);
         ps.setTimestamp(2, this.beginTijd);
         ps.setTimestamp(3, this.eindTijd);

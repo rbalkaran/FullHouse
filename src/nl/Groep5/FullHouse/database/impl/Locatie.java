@@ -39,6 +39,7 @@ public class Locatie {
 
     /**
      * Nieuwe locatie opslaan
+     *
      * @return True als locatie is opgeslagen
      * @throws SQLException
      */
@@ -53,10 +54,11 @@ public class Locatie {
 
     /**
      * Bestaande locatie updaten
+     *
      * @return True als locatie is opgeslagen
      * @throws SQLException
      */
-    public boolean Update() throws SQLException{
+    public boolean Update() throws SQLException {
         MySQLConnector mysql = Main.getMySQLConnection();
         PreparedStatement ps = mysql.prepareStatement("UPDATE `locatie` SET `naam`=? WHERE `ID`=?;");
         ps.setString(1, this.naam);

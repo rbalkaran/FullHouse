@@ -55,6 +55,7 @@ public class DatabaseHelper {
 
     /**
      * Verkrijg een {@link Speler} dat bij de ID hoort
+     *
      * @param id Speler ID dat gekoppeld is in de database
      * @return Als id is gevonden geeft het een {@link Speler} anders null
      * @throws SQLException
@@ -130,6 +131,7 @@ public class DatabaseHelper {
 
     /**
      * Verkrijg een lijst met inschrijvingen van het opgegeven toernooi
+     *
      * @param toernooi Toernooi object
      * @return Lijst met inschrijvingen van toernooi
      * @throws SQLException
@@ -152,6 +154,7 @@ public class DatabaseHelper {
 
     /**
      * Verkrijg een lijst met inschrijvingen van opgegeven masterclass
+     *
      * @param masterClass Masterclass object
      * @return Lijst met Inschrijvingen van masterclass
      * @throws SQLException
@@ -174,10 +177,11 @@ public class DatabaseHelper {
 
     /**
      * Verkrijg een lijst met toernooien
+     *
      * @return Lijst met toernooien
      * @throws SQLException
      */
-    public static List<Toernooi> verkrijgToernooien() throws SQLException{
+    public static List<Toernooi> verkrijgToernooien() throws SQLException {
         MySQLConnector mysql = Main.getMySQLConnection();
         PreparedStatement ps = mysql.prepareStatement("select * from toernooi");
         ResultSet rs = mysql.query(ps);
@@ -193,23 +197,25 @@ public class DatabaseHelper {
 
     /**
      * Verkrijg {@link Toernooi} dat bij het opgegeven ID hoort
+     *
      * @param id Toernooi ID
      * @return {@link Toernooi}
      * @throws SQLException
      */
-    public static Toernooi verkrijgToernooiById(int id) throws SQLException{
+    public static Toernooi verkrijgToernooiById(int id) throws SQLException {
         MySQLConnector mysql = Main.getMySQLConnection();
         PreparedStatement ps = mysql.prepareStatement("select * from toernooi where ID = ?");
         ps.setInt(1, id);
 
         ResultSet rs = mysql.query(ps);
 
-        if(rs.next()) return new Toernooi(rs);
+        if (rs.next()) return new Toernooi(rs);
         return null;
     }
 
     /**
      * Verkrijg {@link Locatie} van de opgegeven ID
+     *
      * @param locatieId
      * @return {@link Locatie}
      * @throws SQLException
@@ -220,20 +226,21 @@ public class DatabaseHelper {
         ps.setInt(1, locatieId);
         ResultSet rs = mysql.query(ps);
 
-        if(rs.next()) return new Locatie(rs);
+        if (rs.next()) return new Locatie(rs);
         return null;
     }
 
     /**
      * Probeer een speler te registreren voor een {@link Toernooi}
-     * @param toernooi Toernooi voor de speler om te registeren
-     * @param speler Speler dat zich wilt registeren voor Toernooi
+     *
+     * @param toernooi     Toernooi voor de speler om te registeren
+     * @param speler       Speler dat zich wilt registeren voor Toernooi
      * @param heeftBetaald Of de speler al betaald heeft voor het toernooi
      * @return true als de registratie voltooid is, false registratie niet gelukt is (bijvoorbeeld vol)
      * @throws SQLException
      */
-    public static boolean registreerSpelerVoorToernooi(Toernooi toernooi, Speler speler, boolean heeftBetaald) throws SQLException{
-        if(toernooi.isVol()){
+    public static boolean registreerSpelerVoorToernooi(Toernooi toernooi, Speler speler, boolean heeftBetaald) throws SQLException {
+        if (toernooi.isVol()) {
             // De inschrijvingen zijn vol, geen vrije plekken beschikbaar
             return false;
         }
@@ -242,7 +249,7 @@ public class DatabaseHelper {
         PreparedStatement ps = mysql.prepareStatement("INSERT INTO `inschrijving_toernooi` (`spelerID`, `toernooiID`, `betaald`) VALUES (?, ?, ?)");
         ps.setInt(1, speler.getID());
         ps.setInt(2, toernooi.getID());
-        ps.setBoolean( 3, heeftBetaald);
+        ps.setBoolean(3, heeftBetaald);
 
         mysql.update(ps);
 
@@ -251,14 +258,15 @@ public class DatabaseHelper {
 
     /**
      * Probeer een speler te registreren voor een {@link MasterClass}
-     * @param masterClass Masterclass voor de speler om te registeren
-     * @param speler Speler dat zich wilt registeren voor Masterclass
+     *
+     * @param masterClass  Masterclass voor de speler om te registeren
+     * @param speler       Speler dat zich wilt registeren voor Masterclass
      * @param heeftBetaald Of de speler al betaald heeft voor de Masterclass
      * @return true als de registratie voltooid is, false registratie niet gelukt is (bijvoorbeeld vol of te lage rating)
      * @throws SQLException
      */
-    public static boolean registreerSpelerVoorMasterclass(MasterClass masterClass, Speler speler, boolean heeftBetaald) throws SQLException{
-        if(masterClass.isVol() || speler.getRating() < masterClass.getMinRating()){
+    public static boolean registreerSpelerVoorMasterclass(MasterClass masterClass, Speler speler, boolean heeftBetaald) throws SQLException {
+        if (masterClass.isVol() || speler.getRating() < masterClass.getMinRating()) {
             // De inschrijvingen zijn vol, geen vrije plekken beschikbaar of de rating van speler is te laag
             return false;
         }
@@ -267,7 +275,7 @@ public class DatabaseHelper {
         PreparedStatement ps = mysql.prepareStatement("INSERT INTO `inschrijving_masterclass` (`spelerID`, `masterclassID`, `betaald`) VALUES (?, ?, ?)");
         ps.setInt(1, speler.getID());
         ps.setInt(2, masterClass.getID());
-        ps.setBoolean( 3, heeftBetaald);
+        ps.setBoolean(3, heeftBetaald);
 
         mysql.update(ps);
 
