@@ -1,5 +1,6 @@
 package nl.Groep5.FullHouse.UI;
 
+import jdk.nashorn.internal.scripts.JO;
 import nl.Groep5.FullHouse.Main;
 
 import javax.swing.*;
@@ -28,22 +29,33 @@ public class InlogScherm implements ActionListener {
         txtPassword.addActionListener(this);
         btnLogin.addActionListener(this);
 
-        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        PreparedStatement ps = Main.getMySQLConnection().prepareStatement("select user, pass from logins where user = ? and pass = ?");
+        PreparedStatement ps = Main.getMySQLConnection().prepareStatement("select gebruikersnaam, wachtwoord, rechten from medewerker where gebruikersnaam = ? and wachtwoord = ?");
         try {
             ps.setString(1, txtUser.getText());
             ps.setString(2, new String(txtPassword.getPassword()));
 
             ResultSet rs = Main.getMySQLConnection().query(ps);
-            if(rs.next()){
-                new MainScherm();
-                frame.dispose();
+            if(rs.next()) {
+                switch (rs.getInt("rechten")) {
+                    case 0:
+                        JOptionPane.showMessageDialog(frame, "U bezit onvoldoende rechten!", "Toegang geweigerd",JOptionPane.WARNING_MESSAGE);
+                        break;
+                    case 1:
+                        new MainScherm();
+                        frame.dispose();
+                        break;
+                    case 2:
+                        new MainScherm();
+                        frame.dispose();
+                        break;
+                }
             }else{
-                JOptionPane.showMessageDialog(frame, "Gebruikersnaam of wachtwoord is incorrect!");
+                JOptionPane.showMessageDialog(frame, "Gebruikersnaam of wachtwoord is incorrect!","Onbekende inlog gegevens", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException e1) {
             e1.printStackTrace();
