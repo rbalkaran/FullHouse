@@ -1,4 +1,4 @@
-package nl.Groep5.FullHouse;
+package nl.Groep5.FullHouse.database;
 
 import java.sql.*;
 import java.util.TimeZone;
@@ -33,12 +33,13 @@ public class MySQLConnector {
     private void connect() {
         try {
             System.out.println("[MySQL] Attempting to login to database");
-                con = DriverManager.getConnection("jdbc:mysql://" + host + ":3306/" + database + "?autoReconnect=true&maxReconnects=10&serverTimezone=" + TimeZone.getDefault().getID(),
+                con = DriverManager.getConnection("jdbc:mysql://" + host + ":3306/" + database + "?autoReconnect=true&maxReconnects=2&serverTimezone=" + TimeZone.getDefault().getID(),
                     user, password);
 
 
             System.out.println("[MySQL] The connection to MySQL has been made!");
         } catch (SQLException e) {
+            System.out.println("[MySQL] The connection to MySQL couldn't be made!\nreason: " + e.getMessage());
             System.out.println("[MySQL] The connection to MySQL couldn't be made!\nreason: " + e.getMessage() + ",\nCaused by " + e.getCause().getMessage());
         }
     }
