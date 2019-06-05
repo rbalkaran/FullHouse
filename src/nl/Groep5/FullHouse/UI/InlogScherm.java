@@ -25,6 +25,8 @@ public class InlogScherm implements ActionListener {
         frame.add(mainPanel);
         frame.setSize(410, 130);
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
 
         txtPassword.addActionListener(this);
         btnLogin.addActionListener(this);

@@ -47,6 +47,7 @@ public class MainScherm {
         frame.add(mainPanel);
         frame.setSize(500, 420);
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
