@@ -76,9 +76,9 @@ public class MySQLConnector {
      * Execute a update/insert statement
      * @param statement PrepareStatement with Update/Insert statement
      */
-    public void update(PreparedStatement statement) throws SQLException {
+    public int update(PreparedStatement statement) throws SQLException {
         try {
-            statement.executeUpdate();
+            return statement.executeUpdate();
         } catch (SQLException e) {
             connect();
             e.printStackTrace();

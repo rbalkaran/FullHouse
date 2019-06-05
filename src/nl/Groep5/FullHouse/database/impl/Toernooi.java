@@ -1,11 +1,14 @@
 package nl.Groep5.FullHouse.database.impl;
 
+import nl.Groep5.FullHouse.Main;
 import nl.Groep5.FullHouse.database.DatabaseHelper;
+import nl.Groep5.FullHouse.database.MySQLConnector;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -150,5 +153,47 @@ public class Toernooi {
             e.printStackTrace();
         }
         return true;
+    }
+
+
+    /**
+     * Nieuw toernooi opslaan
+     * @return true als toernooi is opgeslagen in database
+     * @throws SQLException
+     */
+    public boolean Save() throws SQLException {
+        MySQLConnector mysql = Main.getMySQLConnection();
+        PreparedStatement ps = mysql.prepareStatement("INSERT INTO `toernooi` (`naam`, `datum`, `beginTijd`, `eindTijd`, `beschrijving`, `maxInschrijvingen`, `inleg`, `uitersteInschrijfDatum`, `locatieID`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
+        FillPrepareStatement(ps);
+
+        // check if the update is 1 (1 row updated/added)
+        return mysql.update(ps) == 1;
+    }
+
+    /**
+     * Update bestaande Toernooi
+     * @return True als het geupdate is
+     * @throws SQLException
+     */
+    public boolean Update() throws SQLException{
+        MySQLConnector mysql = Main.getMySQLConnection();
+        PreparedStatement ps = mysql.prepareStatement("UPDATE `toernooi` SET `naam`=?, `datum`=?, `beginTijd`=?, `eindTijd`=?, `beschrijving`=?, `maxInschrijvingen`=?, `inleg`=?, `uitersteInschrijfDatum`=?, `locatieID`=? WHERE `ID`='?';");
+        FillPrepareStatement(ps);
+        ps.setInt(10, this.ID);
+
+        // check if the update is 1 (1 row updated/added)
+        return mysql.update(ps) == 1;
+    }
+
+    private void FillPrepareStatement(PreparedStatement ps) throws SQLException {
+        ps.setString(1, this.naam);
+        ps.setDate(2, this.datum);
+        ps.setTimestamp(3, this.beginTijd);
+        ps.setTimestamp(4, this.eindTijd);
+        ps.setString(5, this.beschrijving);
+        ps.setInt(6, this.maxInschrijvingen);
+        ps.setDouble(7, this.inleg);
+        ps.setDate(8, this.uitersteInschrijfDatum);
+        ps.setInt(9, this.locatieID);
     }
 }
