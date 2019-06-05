@@ -1,10 +1,13 @@
 package nl.Groep5.FullHouse;
 
 import nl.Groep5.FullHouse.UI.InlogScherm;
+import nl.Groep5.FullHouse.database.DatabaseHelper;
+import nl.Groep5.FullHouse.database.MySQLConnector;
 
 import javax.swing.*;
 import java.io.*;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class Main {
@@ -46,11 +49,11 @@ public class Main {
 
 
         // test database om logins te testen !
-        ResultSet rs = mysqlConnection.query(mysqlConnection.prepareStatement("select 1 from logins limit 1"));
-        if(rs == null){
-            mysqlConnection.update(mysqlConnection.prepareStatement("CREATE TABLE logins ( `id` INT NOT NULL AUTO_INCREMENT , `user` VARCHAR(50) NOT NULL , `pass` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`));"));
-            mysqlConnection.update(mysqlConnection.prepareStatement("INSERT INTO logins(`user`, `pass`) values('test', 'test')"));
-        }
+//        ResultSet rs = mysqlConnection.query(mysqlConnection.prepareStatement("select 1 from logins limit 1"));
+//        if(rs == null){
+//            mysqlConnection.update(mysqlConnection.prepareStatement("CREATE TABLE logins ( `id` INT NOT NULL AUTO_INCREMENT , `user` VARCHAR(50) NOT NULL , `pass` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`));"));
+//            mysqlConnection.update(mysqlConnection.prepareStatement("INSERT INTO logins(`user`, `pass`) values('test', 'test')"));
+//        }
 
         try {
             // zet de style naar de operatie systeem style (voor meeste van ons, windows style)
@@ -61,6 +64,7 @@ public class Main {
         }
 
         new InlogScherm();
+
     }
 
     public static MySQLConnector getMySQLConnection() {
