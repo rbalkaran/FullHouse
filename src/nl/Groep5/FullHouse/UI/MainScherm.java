@@ -1,6 +1,11 @@
 package nl.Groep5.FullHouse.UI;
 
+import nl.Groep5.FullHouse.database.DatabaseHelper;
+import nl.Groep5.FullHouse.database.impl.Speler;
+
 import javax.swing.*;
+import java.sql.SQLException;
+import java.util.List;
 
 public class MainScherm {
     private JPanel mainPanel;
@@ -20,7 +25,6 @@ public class MainScherm {
     private JButton btnSpelerNieuw;
     private JButton btnSpelerBewerk;
 
-    private JList listToernooien;
     private JTextField txtToernooiNaam;
     private JTextField txtToernooiDatum;
     private JTextField txtToernooiBeginTijd;
@@ -41,6 +45,7 @@ public class MainScherm {
     private JTextField txtMasterClassMinRating;
     private JButton btnMasterClassGeregistreerdeSpelers;
     private TextFieldWithPlaceholder txtMasterClassZoeken;
+    private JTable table1;
 
     public MainScherm() {
         JFrame frame = new JFrame("FullHouse");
@@ -52,12 +57,18 @@ public class MainScherm {
 
 
         DefaultListModel<String> test = new DefaultListModel<>();
+
         listSpelers.setModel(test);
 
-        test.addElement("Falco S");
-        test.addElement("Priya");
-        test.addElement("Reveesh");
-        test.addElement("Rens");
+        try{
+            DatabaseHelper DBhelper = new DatabaseHelper();
+            List<Speler> list = DBhelper.verkrijgAlleSpelers();
+            for(Speler element : list){
+                test.addElement(element.getVoornaam());
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }
 
