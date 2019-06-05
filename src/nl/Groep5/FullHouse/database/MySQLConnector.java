@@ -39,7 +39,6 @@ public class MySQLConnector {
 
             System.out.println("[MySQL] The connection to MySQL has been made!");
         } catch (SQLException e) {
-            System.out.println("[MySQL] The connection to MySQL couldn't be made!\nreason: " + e.getMessage());
             System.out.println("[MySQL] The connection to MySQL couldn't be made!\nreason: " + e.getMessage() + ",\nCaused by " + e.getCause().getMessage());
         }
     }

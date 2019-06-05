@@ -63,13 +63,7 @@ public class Main {
             System.out.println("Unsupported Look and feel, defaulting to normal");
         }
 
-//        new InlogScherm();
-
-        try {
-            System.out.println(DatabaseHelper.verkrijgAlleSpelers().size());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        new InlogScherm();
 
     }
 
