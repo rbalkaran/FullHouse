@@ -1,5 +1,7 @@
 package nl.Groep5.FullHouse.database.impl;
 
+import nl.Groep5.FullHouse.database.DatabaseHelper;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -38,4 +40,23 @@ public class InschrijvingToernooi {
     public void setBetaald(boolean betaald) {
         isBetaald = betaald;
     }
+
+    /**
+     * Verkrijg de {@link Speler} van deze inschrijving
+     * @return {@link Speler} van deze inschrijving
+     * @throws SQLException
+     */
+    public Speler getSpeler() throws SQLException{
+        return DatabaseHelper.verkrijgSpelerBijId(spelerID);
+    }
+
+    /**
+     * Verkrijg de {@link Toernooi} van deze inschrijving
+     * @return {@link Toernooi} van deze inschrijving
+     * @throws SQLException
+     */
+    public Toernooi getToernooi() throws SQLException{
+        return DatabaseHelper.verkrijgToernooiById(toernooiID);
+    }
+
 }

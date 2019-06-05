@@ -1,10 +1,13 @@
 package nl.Groep5.FullHouse.database.impl;
 
+import nl.Groep5.FullHouse.database.DatabaseHelper;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.Period;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by DeStilleGast 5-6-2019
@@ -96,5 +99,38 @@ public class MasterClass {
 
     public void setMaxAantalInschrijvingen(int maxAantalInschrijvingen) {
         this.maxAantalInschrijvingen = maxAantalInschrijvingen;
+    }
+
+    public List<InschrijvingMasterclass> getInschrijvingen() throws SQLException {
+        return DatabaseHelper.VerkrijgInschrijvingenVanMasterClass(this);
+    }
+
+    public Locatie getLocatie()throws SQLException{
+        return DatabaseHelper.verkrijgLocatieById(locatieId);
+    }
+
+    /**
+     * Probeer speler in te schrijven voor deze MasterClass
+     * @param speler om te registreren
+     * @return true als registratie gelukt is, false als het niet gelukt is (bijvoorbeeld omdat het vol is)
+     */
+    public boolean voegSpelerToe(Speler speler, Boolean heeftBetaald)throws SQLException{
+        return DatabaseHelper.registreerSpelerVoorMasterclass(this, speler, heeftBetaald);
+    }
+
+    /**
+     * Kijk of de masterclass vol zit kwa inschrijvingen
+     * @return true als de inschrijven de maximaleAantal overschrijft
+     * <br>
+     * <br>
+     *     het returned ook true als er een SQL fout opgetreden is !!
+     */
+    public boolean isVol(){
+        try {
+            return this.getInschrijvingen().size() >= this.getMaxAantalInschrijvingen();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return true;
     }
 }

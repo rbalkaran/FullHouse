@@ -1,5 +1,7 @@
 package nl.Groep5.FullHouse.database.impl;
 
+import nl.Groep5.FullHouse.database.DatabaseHelper;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -157,5 +159,13 @@ public class Speler {
 
     public void setRating(double rating) {
         this.rating = rating;
+    }
+
+    public boolean registreerVoorToernooi(Toernooi toernooi, Boolean heeftBetaald) throws SQLException{
+        return DatabaseHelper.registreerSpelerVoorToernooi(toernooi, this, heeftBetaald);
+    }
+
+    public boolean registreerVoorMasterClass(MasterClass masterClass, Boolean heeftBetaald) throws SQLException{
+        return DatabaseHelper.registreerSpelerVoorMasterclass(masterClass, this, heeftBetaald);
     }
 }
