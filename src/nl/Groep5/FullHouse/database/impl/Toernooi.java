@@ -13,13 +13,12 @@ import java.util.List;
 public class Toernooi {
 
     private int ID, locatieID;
-    private String naam, beschrijving;
+    private String naam, beschrijving, beginTijd, eindTijd;
     private Date datum, uitersteInschrijfDatum;
-    private Timestamp beginTijd, eindTijd;
     private int maxInschrijvingen;
     private double inleg;
 
-    public Toernooi(int locatieID, String naam, String beschrijving, Date datum, Date uitersteInschrijfDatum, Timestamp beginTijd, Timestamp eindTijd, int maxInschrijvingen, double inleg) {
+    public Toernooi(int locatieID, String naam, String beschrijving, Date datum, Date uitersteInschrijfDatum, String beginTijd, String eindTijd, int maxInschrijvingen, double inleg) {
         this.locatieID = locatieID;
         this.naam = naam;
         this.beschrijving = beschrijving;
@@ -36,8 +35,8 @@ public class Toernooi {
         this.naam = resultSet.getString("naam");
         this.beschrijving = resultSet.getString("beschrijving");
         this.datum = resultSet.getDate("datum");
-        this.beginTijd = resultSet.getTimestamp("beginTijd");
-        this.eindTijd = resultSet.getTimestamp("eindTijd");
+        this.beginTijd = resultSet.getString("beginTijd");
+        this.eindTijd = resultSet.getString("eindTijd");
         this.maxInschrijvingen = resultSet.getInt("maxInschrijvingen");
         this.inleg = resultSet.getDouble("inleg");
     }
@@ -86,19 +85,19 @@ public class Toernooi {
         this.uitersteInschrijfDatum = uitersteInschrijfDatum;
     }
 
-    public Timestamp getBeginTijd() {
+    public String getBeginTijd() {
         return beginTijd;
     }
 
-    public void setBeginTijd(Timestamp beginTijd) {
+    public void setBeginTijd(String beginTijd) {
         this.beginTijd = beginTijd;
     }
 
-    public Timestamp getEindTijd() {
+    public String getEindTijd() {
         return eindTijd;
     }
 
-    public void setEindTijd(Timestamp eindTijd) {
+    public void setEindTijd(String eindTijd) {
         this.eindTijd = eindTijd;
     }
 
@@ -188,8 +187,8 @@ public class Toernooi {
     private void FillPrepareStatement(PreparedStatement ps) throws SQLException {
         ps.setString(1, this.naam);
         ps.setDate(2, this.datum);
-        ps.setTimestamp(3, this.beginTijd);
-        ps.setTimestamp(4, this.eindTijd);
+        ps.setString(3, this.beginTijd);
+        ps.setString(4, this.eindTijd);
         ps.setString(5, this.beschrijving);
         ps.setInt(6, this.maxInschrijvingen);
         ps.setDouble(7, this.inleg);
