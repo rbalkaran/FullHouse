@@ -4,8 +4,16 @@ import nl.Groep5.FullHouse.database.DatabaseHelper;
 import nl.Groep5.FullHouse.database.impl.Speler;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Vector;
 
 public class MainScherm {
     private JPanel mainPanel;
@@ -45,30 +53,69 @@ public class MainScherm {
     private JTextField txtMasterClassMinRating;
     private JButton btnMasterClassGeregistreerdeSpelers;
     private TextFieldWithPlaceholder txtMasterClassZoeken;
-    private JTable table1;
+    private JTable spelerTabel;
+    private JScrollPane spelerScroll;
 
     public MainScherm() {
         JFrame frame = new JFrame("FullHouse");
         frame.add(mainPanel);
-        frame.setSize(500, 420);
+        frame.setSize(750, 420);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        spelerTabel.setModel(bouwSpelerTabel());
 
-
-        DefaultListModel<String> test = new DefaultListModel<>();
-
-        listSpelers.setModel(test);
-
-        try{
-            DatabaseHelper DBhelper = new DatabaseHelper();
-            List<Speler> list = DBhelper.verkrijgAlleSpelers();
-            for(Speler element : list){
-                test.addElement(element.getVoornaam());
+        tabbedPane1.addChangeListener(new ChangeListener(){
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                switch(tabbedPane1.getSelectedIndex()){ //TODO: voeg update logic per tabblad toe.
+                    case 0:
+                        spelerTabel.setModel(bouwSpelerTabel());
+                        break;
+                    default:
+                        break;
+                }
             }
-        }catch (SQLException e){
-            e.printStackTrace();
+        });
+
+
+        spelerTabel.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                System.out.println(spelerTabel.getValueAt(spelerTabel.getSelectedRow(), 0).toString());
+            }
+        });
+    }
+
+    public static DefaultTableModel bouwSpelerTabel(){
+        Vector<String> kollomNamen = new Vector<>();
+        Vector<Vector<Object>> spelerData = new Vector<>();
+        try {
+            DatabaseHelper DBhelper = new DatabaseHelper();
+            List<Speler> spelerLijst = DBhelper.verkrijgAlleSpelers();
+            kollomNamen.add("ID");
+            kollomNamen.add("Voornaam");
+            kollomNamen.add("Tussenvoegsel");
+            kollomNamen.add("Achternaam");
+            kollomNamen.add("Rating");
+            for (Speler element : spelerLijst){
+                Vector<Object> vector = new Vector<>();
+                vector.add(element.getID());
+                vector.add(element.getVoornaam());
+                vector.add(element.getTussenvoegsel());
+                vector.add(element.getAchternaam());
+                vector.add(element.getRating());
+                spelerData.add(vector);
+            }
+        }catch(SQLException d){
+        d.printStackTrace();
         }
+        return new DefaultTableModel(spelerData, kollomNamen){
+            @Override
+            public boolean isCellEditable(int row, int clumn){
+                return false;
+            }
+        };
     }
 }
 
