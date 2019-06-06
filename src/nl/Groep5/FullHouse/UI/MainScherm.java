@@ -216,8 +216,8 @@ public class MainScherm {
                 vector.add(element.getEindTijd());
                 vector.add(element.getMaxAantalInschrijvingen());
                 vector.add(element.getInleg());
-                vector.add(element.getUitersteInschrijfDatum());
-                vector.add(element.getLocatie());
+                vector.add(String.valueOf(element.getUitersteInschrijfDatum()));
+                vector.add(element.getLocatie().getNaam());
                 toernooiData.add(vector);
             }
         }catch(SQLException e){

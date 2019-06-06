@@ -39,6 +39,8 @@ public class Toernooi {
         this.eindTijd = resultSet.getString("eindTijd");
         this.maxInschrijvingen = resultSet.getInt("maxInschrijvingen");
         this.inleg = resultSet.getDouble("inleg");
+        //this.uitersteInschrijfDatum = resultSet.get
+        this.locatieID = resultSet.getInt("locatieID");
     }
 
     public int getID() {
