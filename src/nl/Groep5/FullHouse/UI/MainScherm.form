@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="5" left="5" bottom="5" right="5"/>
     <constraints>
-      <xy x="20" y="20" width="676" height="493"/>
+      <xy x="20" y="20" width="685" height="514"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -17,7 +17,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="142a8" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="142a8" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="5" left="5" bottom="5" right="5"/>
             <constraints>
               <tabbedpane title="Overzicht spelers"/>
@@ -25,130 +25,119 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="525dc" class="javax.swing.JList" binding="listSpelers">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
-                </constraints>
-                <properties/>
-              </component>
-              <grid id="e487c" binding="pnlSpelerOverzicht" layout-manager="GridLayoutManager" row-count="11" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="e487c" binding="pnlSpelerOverzicht" layout-manager="GridLayoutManager" row-count="12" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
                 <border type="none"/>
                 <children>
                   <component id="cffac" class="javax.swing.JLabel">
                     <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <text value="Voornaam:"/>
                     </properties>
                   </component>
-                  <vspacer id="59ac0">
+                  <component id="dee58" class="javax.swing.JTextField" binding="txtSpelerVoornaam">
                     <constraints>
-                      <grid row="9" column="0" row-span="2" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </vspacer>
-                  <component id="c603a" class="javax.swing.JTextField" binding="txtSpelerVoornaam">
-                    <constraints>
-                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="false"/>
+                      <editable value="true"/>
                     </properties>
                   </component>
                   <component id="f93c4" class="javax.swing.JLabel">
                     <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <text value="Tussenvoegsel:"/>
                     </properties>
                   </component>
-                  <component id="c038a" class="javax.swing.JTextField" binding="txtSpelerTussenvoegsel">
+                  <component id="8fb55" class="javax.swing.JTextField" binding="txtSpelerTussenvoegsel">
                     <constraints>
-                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                      <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="false"/>
+                      <editable value="true"/>
                     </properties>
                   </component>
                   <component id="2a41f" class="javax.swing.JLabel">
                     <constraints>
-                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <text value="Achternaam:"/>
                     </properties>
                   </component>
-                  <component id="e9ba3" class="javax.swing.JTextField" binding="txtSpelerAchternaam">
+                  <component id="68c3" class="javax.swing.JTextField" binding="txtSpelerAchternaam">
                     <constraints>
-                      <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                      <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="false"/>
+                      <editable value="true"/>
                     </properties>
                   </component>
                   <component id="f35b6" class="javax.swing.JLabel">
                     <constraints>
-                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <text value="Adres:"/>
                     </properties>
                   </component>
-                  <component id="9cf92" class="javax.swing.JTextField" binding="txtSpelerAdres">
+                  <component id="2ae71" class="javax.swing.JTextField" binding="txtSpelerAdres">
                     <constraints>
-                      <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                      <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="false"/>
+                      <editable value="true"/>
+                      <text value=""/>
+                      <toolTipText value=""/>
                     </properties>
                   </component>
                   <component id="803e1" class="javax.swing.JLabel">
                     <constraints>
-                      <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <text value="Postcode:"/>
                     </properties>
                   </component>
-                  <component id="ffdba" class="javax.swing.JTextField" binding="txtSpelerPostcode">
+                  <component id="171a3" class="javax.swing.JFormattedTextField" binding="txtSpelerPostcode">
                     <constraints>
-                      <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                      <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="false"/>
+                      <editable value="true"/>
                     </properties>
                   </component>
-                  <component id="cdbd6" class="javax.swing.JTextField" binding="txtSpelerWoonplaats">
+                  <component id="5eab4" class="javax.swing.JTextField" binding="txtSpelerWoonplaats">
                     <constraints>
-                      <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                      <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="false"/>
+                      <editable value="true"/>
                     </properties>
                   </component>
                   <component id="bcb4e" class="javax.swing.JLabel">
                     <constraints>
-                      <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <text value="Woonplaats:"/>
@@ -156,79 +145,145 @@
                   </component>
                   <component id="c731d" class="javax.swing.JLabel">
                     <constraints>
-                      <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="6" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <text value="Telefoonnummer:"/>
                     </properties>
                   </component>
-                  <component id="74fd9" class="javax.swing.JTextField" binding="txtSpelerTelefoonnummer">
+                  <component id="25701" class="javax.swing.JFormattedTextField" binding="txtSpelerTelefoonnummer">
                     <constraints>
-                      <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                      <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="false"/>
+                      <editable value="true"/>
                     </properties>
                   </component>
                   <component id="1a2d0" class="javax.swing.JLabel">
                     <constraints>
-                      <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="8" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <text value="Geboorte datum:"/>
                     </properties>
                   </component>
-                  <component id="8df40" class="javax.swing.JTextField" binding="txtSpelerGeboorteDatum">
-                    <constraints>
-                      <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="-1"/>
-                      </grid>
-                    </constraints>
-                    <properties>
-                      <editable value="false"/>
-                    </properties>
-                  </component>
                   <component id="3892c" class="javax.swing.JLabel">
                     <constraints>
-                      <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="10" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Geslacht"/>
+                      <text value="Geslacht:"/>
                     </properties>
                   </component>
                   <component id="e203a" class="javax.swing.JComboBox" binding="cbSpelerGeslacht">
                     <constraints>
-                      <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="10" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <editable value="false"/>
-                      <enabled value="false"/>
+                      <enabled value="true"/>
                       <model>
                         <item value="Man"/>
                         <item value="Vrouw"/>
+                        <item value="?"/>
                       </model>
                     </properties>
                   </component>
-                  <component id="861b5" class="javax.swing.JButton" binding="btnSpelerBewerk">
+                  <component id="b2e9d" class="javax.swing.JFormattedTextField" binding="txtSpelerGeboorteDatum">
                     <constraints>
-                      <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="8" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
                     </constraints>
                     <properties>
-                      <text value="&amp;Bewerk speler"/>
+                      <editable value="true"/>
                     </properties>
                   </component>
-                  <component id="e01bc" class="javax.swing.JButton" binding="btnSpelerNieuw">
+                  <component id="bea15" class="javax.swing.JLabel">
                     <constraints>
-                      <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="9" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="&amp;Registreer speler"/>
+                      <text value="Rating:"/>
                     </properties>
+                  </component>
+                  <component id="cddcd" class="javax.swing.JFormattedTextField" binding="txtSpelerRating">
+                    <constraints>
+                      <grid row="9" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="861b5" class="javax.swing.JButton" binding="btnSpelerUitvoeren">
+                    <constraints>
+                      <grid row="11" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <enabled value="true"/>
+                      <text value="Uitvoeren"/>
+                    </properties>
+                  </component>
+                  <component id="e5133" class="javax.swing.JComboBox" binding="spelerCombo">
+                    <constraints>
+                      <grid row="11" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <editable value="false"/>
+                      <model>
+                        <item value="Bewerken"/>
+                        <item value="Registreren"/>
+                        <item value="Verwijderen"/>
+                      </model>
+                    </properties>
+                  </component>
+                  <component id="b9776" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Email:"/>
+                    </properties>
+                  </component>
+                  <component id="a7a80" class="javax.swing.JTextField" binding="txtSpelerEmail">
+                    <constraints>
+                      <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
                   </component>
                 </children>
               </grid>
+              <scrollpane id="1cca5" binding="spelerScroll">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="10" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <horizontalScrollBarPolicy value="30"/>
+                  <verticalScrollBarPolicy value="22"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="24dae" class="javax.swing.JTable" binding="spelerTabel">
+                    <constraints/>
+                    <properties>
+                      <autoCreateRowSorter value="true"/>
+                      <autoResizeMode value="2"/>
+                      <enabled value="true"/>
+                      <preferredScrollableViewportSize width="450" height="400"/>
+                      <toolTipText value=""/>
+                    </properties>
+                    <clientProperties>
+                      <Table.isFileList class="java.lang.Boolean" value="false"/>
+                    </clientProperties>
+                  </component>
+                </children>
+              </scrollpane>
               <component id="5df8d" class="nl.Groep5.FullHouse.UI.TextFieldWithPlaceholder" binding="txtZoekSpelerInLijst">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
@@ -238,6 +293,22 @@
                 <properties>
                   <placeholder value="Zoeken..."/>
                   <text value=""/>
+                </properties>
+              </component>
+              <component id="9f086" class="javax.swing.JButton" binding="btnReset">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Herladen"/>
+                </properties>
+              </component>
+              <component id="cf969" class="javax.swing.JButton" binding="btnZoeken">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Zoek"/>
                 </properties>
               </component>
             </children>
@@ -253,7 +324,7 @@
               <grid id="5bbae" layout-manager="GridLayoutManager" row-count="10" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
                 <border type="none"/>
@@ -278,7 +349,7 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="false"/>
+                      <editable value="true"/>
                     </properties>
                   </component>
                   <component id="1fe58" class="javax.swing.JLabel">
@@ -352,7 +423,7 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="false"/>
+                      <editable value="true"/>
                     </properties>
                   </component>
                   <component id="96fb8" class="javax.swing.JTextField" binding="txtToernooiBeginTijd">
@@ -362,7 +433,7 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="false"/>
+                      <editable value="true"/>
                     </properties>
                   </component>
                   <component id="ee8ca" class="javax.swing.JTextField" binding="txtToernooiEindTijd">
@@ -372,18 +443,19 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="false"/>
+                      <editable value="true"/>
                     </properties>
                   </component>
                   <component id="1481b" class="javax.swing.JTextArea" binding="txtToernooiBeschrijving">
                     <constraints>
-                      <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                      <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="50"/>
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="false"/>
+                      <editable value="true"/>
                       <enabled value="true"/>
+                      <font name="Segoe UI" size="10"/>
                     </properties>
                   </component>
                   <component id="e0f8b" class="javax.swing.JTextField" binding="txtToernooiMaxInschrijvingen">
@@ -393,7 +465,7 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="false"/>
+                      <editable value="true"/>
                     </properties>
                   </component>
                   <component id="2f905" class="javax.swing.JTextField" binding="txtToernooiInleggeld">
@@ -403,7 +475,7 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="false"/>
+                      <editable value="true"/>
                     </properties>
                   </component>
                   <component id="e8016" class="javax.swing.JTextField" binding="txtToernooiSluitingInschrijving">
@@ -413,17 +485,17 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="false"/>
+                      <editable value="true"/>
                     </properties>
                   </component>
                   <component id="46367" class="javax.swing.JTextArea" binding="txtToernooiCondities">
                     <constraints>
-                      <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                      <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="2" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="50"/>
                       </grid>
                     </constraints>
                     <properties>
-                      <editable value="false"/>
+                      <editable value="true"/>
                       <enabled value="true"/>
                     </properties>
                   </component>
@@ -447,14 +519,22 @@
                   <placeholder value="Zoeken..."/>
                 </properties>
               </component>
-              <component id="67c42" class="javax.swing.JTable" binding="table1" default-binding="true">
+              <scrollpane id="4b10a" binding="toernooiScroll">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
-              </component>
+                <border type="none"/>
+                <children>
+                  <component id="a5efc" class="javax.swing.JTable" binding="toernooiTabel">
+                    <constraints/>
+                    <properties>
+                      <autoResizeMode value="2"/>
+                      <preferredScrollableViewportSize width="450" height="400"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
             </children>
           </grid>
           <grid id="7335b" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
