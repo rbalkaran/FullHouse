@@ -274,12 +274,16 @@ public class MainScherm {
                 }
             }
         });
+        btnZoeken.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                spelerTabel.setModel(bouwSpelerZoekResultaten(txtZoekSpelerInLijst));
+            }
+        });
         btnReset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int selectedRow = spelerTabel.getSelectedRow();
                 spelerTabel.setModel(bouwSpelerTabel());
-                spelerTabel.setRowSelectionInterval(selectedRow, selectedRow);
             }
         });
 
@@ -327,6 +331,36 @@ public class MainScherm {
             }
         }catch(SQLException e){
         e.printStackTrace();
+        }
+        return new DefaultTableModel(spelerData, kollomNamen){
+            @Override
+            public boolean isCellEditable(int row, int clumn){
+                return false;
+            }
+        };
+    }
+
+    public static DefaultTableModel bouwSpelerZoekResultaten(TextFieldWithPlaceholder veld){
+        Vector<String> kollomNamen = new Vector<>();
+        Vector<Vector<Object>> spelerData = new Vector<>();
+        try {
+            List<Speler> spelerLijst = DatabaseHelper.verkrijgAlleSpelers(veld.getText());
+            kollomNamen.add("ID");
+            kollomNamen.add("Voornaam");
+            kollomNamen.add("Tussenvoegsel");
+            kollomNamen.add("Achternaam");
+            kollomNamen.add("Rating");
+            for (Speler element : spelerLijst){
+                Vector<Object> vector = new Vector<>();
+                vector.add(element.getID());
+                vector.add(element.getVoornaam());
+                vector.add(element.getTussenvoegsel());
+                vector.add(element.getAchternaam());
+                vector.add(element.getRating());
+                spelerData.add(vector);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
         }
         return new DefaultTableModel(spelerData, kollomNamen){
             @Override

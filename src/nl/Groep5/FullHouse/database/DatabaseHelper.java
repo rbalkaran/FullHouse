@@ -37,10 +37,11 @@ public class DatabaseHelper {
         if (filter == null || filter.isEmpty()) {
             ps = mysql.prepareStatement("select * from speler");
         } else {
-            ps = mysql.prepareStatement("select * from speler where voornaam like ? or tussenvoegsel like ? or achternaam like ?");
+            ps = mysql.prepareStatement("select * from speler where voornaam like ? or tussenvoegsel like ? or achternaam like ? or id = ?");
             ps.setString(1, filter);
             ps.setString(2, filter);
             ps.setString(3, filter);
+            ps.setString(4, filter);
         }
         ResultSet rs = mysql.query(ps);
 
