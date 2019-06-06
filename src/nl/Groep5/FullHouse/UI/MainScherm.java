@@ -10,7 +10,13 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -32,7 +38,7 @@ public class MainScherm {
     private JTextField txtSpelerGeboorteDatum;
     private JComboBox cbSpelerGeslacht;
     private TextFieldWithPlaceholder txtZoekSpelerInLijst;
-    private JButton btnSpelerBewerk;
+    private JButton btnSpelerUitvoeren;
 
     private JTextField txtToernooiNaam;
     private JTextField txtToernooiDatum;
@@ -59,15 +65,14 @@ public class MainScherm {
     private JScrollPane toernooiScroll;
     private JTable toernooiTabel;
     private JButton btnZoeken;
-    private JComboBox comboBox1;
+    private JComboBox spelerCombo;
 
     public MainScherm() {
         JFrame frame = new JFrame("FullHouse");
         frame.add(mainPanel);
-        frame.setSize(900, 500);
+        frame.setMinimumSize(new Dimension(900, 500));
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         spelerTabel.setModel(bouwSpelerTabel());
@@ -78,11 +83,11 @@ public class MainScherm {
                 switch(tabbedPane1.getSelectedIndex()){ //TODO: voeg update logic per tabblad toe.
                     case 0:
                         spelerTabel.setModel(bouwSpelerTabel());
-                        frame.setSize(900,500);
+                        //frame.setSize(900,500);
                         break;
                     case 1:
                         toernooiTabel.setModel(bouwToernooienTabel());
-                        frame.setSize(1500,500);
+                        //frame.setSize(1500,500);
                     default:
                         break;
                 }
@@ -109,6 +114,33 @@ public class MainScherm {
                 }
             }
         });
+        btnSpelerUitvoeren.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    int selectedIndex = (int) spelerTabel.getValueAt(spelerTabel.getSelectedRow(), 0);
+                    Speler geselecteerdeSpeler = DatabaseHelper.verkrijgSpelerBijId(selectedIndex);
+                switch(String.valueOf(spelerCombo.getItemAt(spelerCombo.getSelectedIndex()))){
+                    case "Bewerken":
+                        System.out.println("Bewerkt");
+                            geselecteerdeSpeler.setVoornaam(txtSpelerVoornaam.getText());
+                            geselecteerdeSpeler.Update(); //TODO: Dit is een work in progress, en was alleen voor testing
+                        break;
+                    case "Registreren":
+                        System.out.println("Geregistreerd");
+                        break;
+                    case "Verwijderen":
+                        System.out.println("Verwijdert");
+                        break;
+                }
+                }catch (SQLException uitvoerFout){
+                    uitvoerFout.printStackTrace();
+                }
+            }
+        });
+
+
+
         toernooiTabel.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 try{
@@ -129,6 +161,8 @@ public class MainScherm {
             }
         });
     }
+
+
 
     public static DefaultTableModel bouwSpelerTabel(){
         Vector<String> kollomNamen = new Vector<>();

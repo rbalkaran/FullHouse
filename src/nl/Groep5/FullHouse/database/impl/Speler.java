@@ -195,7 +195,7 @@ public class Speler {
      */
     public boolean Update() throws SQLException {
         MySQLConnector mysql = Main.getMySQLConnection();
-        PreparedStatement ps = mysql.prepareStatement("UPDATE `speler` SET `voornaam`=?, `tussenvoegsel`=?, `achternaam`=?, `adres`=?, `postcode`=?, `woonplaats`=?, `telefoonnummer`=?, `email`=?, `geslacht`=?, `geboortedatum`=?, `leeftijd`=?, `rating`=? WHERE `ID`=?;");
+        PreparedStatement ps = mysql.prepareStatement("UPDATE `speler` SET `voornaam`=?, `tussenvoegsel`=?, `achternaam`=?, `adres`=?, `postcode`=?, `woonplaats`=?, `telefoonnummer`=?, `email`=?, `geslacht`=?, `geboortedatum`=?, `rating`=? WHERE `ID`=?;");
         FillPrepareStatement(ps);
         ps.setInt(12, this.ID);
 
@@ -212,7 +212,7 @@ public class Speler {
         ps.setString(6, this.woonplaats);
         ps.setString(7, this.telefoonnummer);
         ps.setString(8, this.email);
-        ps.setString(9, this.geslacht + ""); // convert char back to string
+        ps.setString(9, String.valueOf(this.geslacht)); // convert char back to string
         ps.setDate(10, this.geboortedatum);
         ps.setDouble(11, this.rating);
     }

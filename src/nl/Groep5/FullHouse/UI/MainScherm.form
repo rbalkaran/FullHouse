@@ -198,15 +198,15 @@
                       </model>
                     </properties>
                   </component>
-                  <component id="861b5" class="javax.swing.JButton" binding="btnSpelerBewerk">
+                  <component id="861b5" class="javax.swing.JButton" binding="btnSpelerUitvoeren">
                     <constraints>
-                      <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <text value="Uitvoeren"/>
                     </properties>
                   </component>
-                  <component id="e5133" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+                  <component id="e5133" class="javax.swing.JComboBox" binding="spelerCombo">
                     <constraints>
                       <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -223,7 +223,9 @@
               </grid>
               <scrollpane id="1cca5" binding="spelerScroll">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="10" height="-1"/>
+                  </grid>
                 </constraints>
                 <properties>
                   <horizontalScrollBarPolicy value="30"/>
@@ -237,7 +239,8 @@
                       <autoCreateRowSorter value="true"/>
                       <autoResizeMode value="2"/>
                       <enabled value="true"/>
-                      <toolTipText value="Selecteer een speler om de gegevens te wijzigen."/>
+                      <preferredScrollableViewportSize width="450" height="400"/>
+                      <toolTipText value=""/>
                     </properties>
                     <clientProperties>
                       <Table.isFileList class="java.lang.Boolean" value="false"/>
