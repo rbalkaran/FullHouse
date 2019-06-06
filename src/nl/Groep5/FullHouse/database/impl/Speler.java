@@ -8,9 +8,12 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import java.util.regex.Pattern;
 
 /**
  * Created by DeStilleGast 5-6-2019
@@ -120,36 +123,69 @@ public class Speler {
         return p.getYears();
     }
 
-    public void setVoornaam(String voornaam) {
-        this.voornaam = voornaam;
+    public void setVoornaam(String voornaam) throws Exception {
+        if(voornaam.matches("^(?=\\s*\\S).*$")) {
+            this.voornaam = voornaam;
+        }else{
+            throw new Exception("Voornaam mag niet leeg zijn en mag maximaal 20 karakters bevatten.");
+        }
     }
 
-    public void setTussenvoegsel(String tussenvoegsel) {
-        this.tussenvoegsel = tussenvoegsel;
+    public void setTussenvoegsel(String tussenvoegsel) throws Exception{
+        if(tussenvoegsel.matches("\\D{0,10}")) {
+            this.tussenvoegsel = tussenvoegsel;
+        }else{
+            throw new Exception("Tussenvoegsel mag alleen 0 tot 10 letters bevatten");
+        }
     }
 
-    public void setAchternaam(String achternaam) {
-        this.achternaam = achternaam;
+    public void setAchternaam(String achternaam) throws Exception{
+        if(achternaam.matches("^(?=\\s*\\S).*$")) {
+            this.achternaam = achternaam;
+        }else{
+            throw new Exception("Achternaam mag niet leeg zijn en mag maximaal 45 karakters bevatten.");
+        }
     }
 
-    public void setAdres(String adres) {
-        this.adres = adres;
+    public void setAdres(String adres) throws Exception {
+        if(adres.matches(".{3,30}")) {
+            this.adres = adres;
+        }else{
+            throw new Exception("Adres mag alleen 3 tot 30 karakters bevatten.");
+        }
     }
 
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
+    public void setPostcode(String postcode) throws Exception {
+        if(postcode.matches("\\d{4}[A-Z]{2}")) {
+            this.postcode = postcode;
+        }else{
+            throw new Exception("Postcode moet beginnen met 4 cijfers en eindigen met 2 hoofdletters.");
+        }
     }
 
-    public void setWoonplaats(String woonplaats) {
-        this.woonplaats = woonplaats;
+    public void setWoonplaats(String woonplaats) throws Exception {
+        if(woonplaats.matches(".{1,20}")) {
+            this.woonplaats = woonplaats;
+        }else{
+            throw new Exception("Plaatsnaam moet 1 tot 20 letters bevatten.");
+        }
     }
 
-    public void setTelefoonnummer(String telefoonnummer) {
-        this.telefoonnummer = telefoonnummer;
+    public void setTelefoonnummer(String telefoonnummer) throws Exception {
+        if(telefoonnummer.matches("\\d{1,10}")){
+            this.telefoonnummer = telefoonnummer;
+        }else{
+            throw new Exception("Telefoonnummers mogen 1 tot 10 cijfers bevatten.");
+        }
+
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String email) throws Exception {
+        if(email.matches(".{8,30}")) {
+            this.email = email;
+        }else{
+            throw new Exception("Een valide email adres bestaat uit 8 tot 30 karakters.");
+        }
     }
 
     public void setGeslacht(char geslacht) {
@@ -160,8 +196,15 @@ public class Speler {
         this.geboortedatum = geboortedatum;
     }
 
-    public void setRating(double rating) {
-        this.rating = rating;
+    public void setRating(double rating) throws Exception{
+        String regexDecimal = "^-?\\d*\\.\\d+$";
+        String regexInteger = "^-?\\d+$";
+        String regexDouble = regexDecimal + "|" + regexInteger;
+        if(String.valueOf(rating).matches(regexDouble)) {
+            this.rating = rating;
+        }else{
+            throw new Exception("De rating is incorrect ingevoerd.");
+        }
     }
 
     public boolean registreerVoorToernooi(Toernooi toernooi, Boolean heeftBetaald) throws SQLException {
@@ -224,16 +267,21 @@ public class Speler {
      * @throws SQLException
      */
     public boolean AVGClear() throws SQLException {
-        this.setVoornaam("[verwijderd]");
-        this.setTussenvoegsel("[verwijderd]");
-        this.setAchternaam("[verwijderd]");
-        this.setPostcode("[verwijderd]");
-        this.setAdres("[verwijderd]");
-        this.setEmail("[verwijderd]");
-        this.setWoonplaats("[verwijderd]");
-        this.setGeboortedatum(Date.valueOf(LocalDate.MIN));
+        this.voornaam = "[verwijderd]";
+        this.tussenvoegsel = "";
+        this.achternaam = "[verwijderd]";
+        this.postcode = "0000AA";
+        this.adres = "[verwijderd]";
+        this.email = "[verwijderd]";
+        this.woonplaats = "[verwijderd]";
+        this.telefoonnummer = "0000000000";
+        try {
+            this.geboortedatum = (new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse("0001-01-01").getTime()));
+        }catch (ParseException parseError){
+            parseError.printStackTrace();
+        }
         this.setGeslacht('?');
-        this.setRating(0);
+        this.rating = 0;
 
         return Update();
     }
