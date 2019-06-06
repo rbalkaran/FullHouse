@@ -74,8 +74,6 @@ public class MainScherm {
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        Pattern numbersOnly = Pattern.compile("\\d{1,10}");
-        Pattern notEmpty = Pattern.compile("^(?=\\s*\\S).*$");
         try {
             new MaskFormatter("####UU").install(txtSpelerPostcode);
             new MaskFormatter("####-##-##").install(txtSpelerGeboorteDatum);

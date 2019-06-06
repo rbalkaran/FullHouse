@@ -124,7 +124,7 @@ public class Speler {
     }
 
     public void setVoornaam(String voornaam) throws Exception {
-        if(voornaam.matches("^(?=\\s*\\S).*$")) {
+        if(voornaam.matches(".{1,20}")) {
             this.voornaam = voornaam;
         }else{
             throw new Exception("Voornaam mag niet leeg zijn en mag maximaal 20 karakters bevatten.");
