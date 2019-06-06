@@ -281,6 +281,7 @@ public class MainScherm {
         btnReset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                myFunction();
                 spelerTabel.setModel(bouwSpelerTabel());
             }
         });
@@ -404,6 +405,9 @@ public class MainScherm {
                 return false;
             }
         };
+    }
+    public void myFunction(){
+        System.out.println("Hello World");
     }
 
 }
