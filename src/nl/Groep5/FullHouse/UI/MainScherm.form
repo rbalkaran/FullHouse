@@ -337,11 +337,6 @@
                       <text value="Naam: "/>
                     </properties>
                   </component>
-                  <vspacer id="cfcf7">
-                    <constraints>
-                      <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </vspacer>
                   <component id="b57a8" class="javax.swing.JTextField" binding="txtToernooiNaam">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
@@ -480,14 +475,6 @@
                       <editable value="true"/>
                     </properties>
                   </component>
-                  <component id="cb3ef" class="javax.swing.JButton" binding="btnToernooiTafelIndeling">
-                    <constraints>
-                      <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <text value="&amp;Tafel indeling"/>
-                    </properties>
-                  </component>
                   <component id="2c71" class="javax.swing.JButton" binding="btnToernooiUitvoeren">
                     <constraints>
                       <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -507,6 +494,22 @@
                         <item value="Verwijderen"/>
                         <item value="Speler inschrijven"/>
                       </model>
+                    </properties>
+                  </component>
+                  <component id="338ef" class="javax.swing.JButton" binding="btnVerwerkWinnaars">
+                    <constraints>
+                      <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Verwerk winnaars"/>
+                    </properties>
+                  </component>
+                  <component id="cb3ef" class="javax.swing.JButton" binding="btnToernooiTafelIndeling">
+                    <constraints>
+                      <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="&amp;Tafel indeling"/>
                     </properties>
                   </component>
                 </children>

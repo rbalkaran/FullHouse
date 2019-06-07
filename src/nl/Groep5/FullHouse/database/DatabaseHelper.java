@@ -314,6 +314,39 @@ public class DatabaseHelper {
         return true;
     }
 
+    public static List<ToernooiUitkomst> verkrijgToernooiUikomsten(Toernooi toernooi) throws SQLException {
+        MySQLConnector mysql = Main.getMySQLConnection();
+        PreparedStatement ps = mysql.prepareStatement("select * from toernooi_uitkomsten where toernooiID = ?");
+        ps.setInt(1, toernooi.getID());
+
+        ResultSet rs = mysql.query(ps);
+
+
+        List<ToernooiUitkomst> toernooiUitkomsts = new ArrayList<>();
+
+        while (rs.next()) {
+            toernooiUitkomsts.add(new ToernooiUitkomst(rs));
+        }
+
+        return toernooiUitkomsts;
+    }
+
+    public static List<ToernooiUitkomst> verkrijgToernooiUikomsten(Speler speler) throws SQLException {
+        MySQLConnector mysql = Main.getMySQLConnection();
+        PreparedStatement ps = mysql.prepareStatement("select * from toernooi_uitkomsten where spelerID = ?");
+        ps.setInt(1, speler.getID());
+
+        ResultSet rs = mysql.query(ps);
+
+
+        List<ToernooiUitkomst> toernooiUitkomsts = new ArrayList<>();
+
+        while (rs.next()) {
+            toernooiUitkomsts.add(new ToernooiUitkomst(rs));
+        }
+
+        return toernooiUitkomsts;
+    }
 
 //    private static <T> List<T> verkrijgLijstVanObjecten(String table, String idName, int idValue){
 //        MySQLConnector mysql = Main.getMySQLConnection();

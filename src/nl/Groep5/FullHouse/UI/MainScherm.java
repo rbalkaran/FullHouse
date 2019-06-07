@@ -1,5 +1,6 @@
 package nl.Groep5.FullHouse.UI;
 
+import jdk.nashorn.internal.scripts.JO;
 import nl.Groep5.FullHouse.database.DatabaseHelper;
 import nl.Groep5.FullHouse.database.impl.Speler;
 import nl.Groep5.FullHouse.database.impl.Toernooi;
@@ -64,10 +65,13 @@ public class MainScherm {
     private JFormattedTextField txtSpelerRating;
     private JButton btnResetSpeler;
     private JTextField txtSpelerEmail;
+
     private JButton btnResetToernooi;
     private JButton btnZoekenToernooi;
     private JButton btnToernooiUitvoeren;
     private JComboBox cbToernooiUitvoeren;
+    private JButton btnVerwerkWinnaars;
+
 
     public MainScherm() {
         JFrame frame = new JFrame("FullHouse");
@@ -472,6 +476,21 @@ public class MainScherm {
             @Override
             public void actionPerformed(ActionEvent e) {
                 spelerTabel.setModel(bouwSpelerTabel());
+            }
+        });
+        btnVerwerkWinnaars.addActionListener(e -> {
+            try {
+                int selectedIndex = (int) toernooiTabel.getValueAt(toernooiTabel.getSelectedRow(), 0);
+                Toernooi geselecteerdToernooi = DatabaseHelper.verkrijgToernooiById(selectedIndex);
+
+                if(DatabaseHelper.verkrijgToernooiUikomsten(geselecteerdToernooi).isEmpty()) {
+                    ToernooiResultaatScherm.show(geselecteerdToernooi);
+                }else {
+                    JOptionPane.showMessageDialog(mainPanel, "Er zijn al resultaten ingevoerd !", "Fout", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } catch (SQLException | NullPointerException ex) {
+                JOptionPane.showMessageDialog(mainPanel, "Er is een fout opgetreden tijdens het ophalen van toernooi gegevens", "Woeps", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
             }
         });
     }
