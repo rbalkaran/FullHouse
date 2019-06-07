@@ -197,6 +197,37 @@ public class DatabaseHelper {
     }
 
     /**
+     * Verkrijg een lijst met toernooien
+     *
+     * @param filter waarom de filter moet werken
+     * @return List met toernooi objecten die gefilted zijn
+     * @throws SQLException
+     */
+    public static List<Toernooi> verkrijgToernooien(String filter) throws SQLException {
+        MySQLConnector mysql = Main.getMySQLConnection();
+        PreparedStatement ps;
+        if(filter == null || filter.isEmpty()){
+            ps = mysql.prepareStatement("select * from toernooi");
+        } else {
+            ps = mysql.prepareStatement("select * from toernooi where naam like ? or datum like ? or beginTijd like ? or eindTijd like ? or ID = ?");
+            ps.setString(1,filter);
+            ps.setString(2,filter);
+            ps.setString(3,filter);
+            ps.setString(4,filter);
+            ps.setString(5,filter);
+        }
+        ResultSet rs = mysql.query(ps);
+
+        List<Toernooi> toernooien = new ArrayList<>();
+
+        while (rs.next()) {
+            toernooien.add(new Toernooi(rs));
+        }
+
+        return toernooien;
+    }
+
+    /**
      * Verkrijg {@link Toernooi} dat bij het opgegeven ID hoort
      *
      * @param id Toernooi ID
@@ -283,6 +314,39 @@ public class DatabaseHelper {
         return true;
     }
 
+    public static List<ToernooiUitkomst> verkrijgToernooiUikomsten(Toernooi toernooi) throws SQLException {
+        MySQLConnector mysql = Main.getMySQLConnection();
+        PreparedStatement ps = mysql.prepareStatement("select * from toernooi_uitkomsten where toernooiID = ?");
+        ps.setInt(1, toernooi.getID());
+
+        ResultSet rs = mysql.query(ps);
+
+
+        List<ToernooiUitkomst> toernooiUitkomsts = new ArrayList<>();
+
+        while (rs.next()) {
+            toernooiUitkomsts.add(new ToernooiUitkomst(rs));
+        }
+
+        return toernooiUitkomsts;
+    }
+
+    public static List<ToernooiUitkomst> verkrijgToernooiUikomsten(Speler speler) throws SQLException {
+        MySQLConnector mysql = Main.getMySQLConnection();
+        PreparedStatement ps = mysql.prepareStatement("select * from toernooi_uitkomsten where spelerID = ?");
+        ps.setInt(1, speler.getID());
+
+        ResultSet rs = mysql.query(ps);
+
+
+        List<ToernooiUitkomst> toernooiUitkomsts = new ArrayList<>();
+
+        while (rs.next()) {
+            toernooiUitkomsts.add(new ToernooiUitkomst(rs));
+        }
+
+        return toernooiUitkomsts;
+    }
 
 //    private static <T> List<T> verkrijgLijstVanObjecten(String table, String idName, int idValue){
 //        MySQLConnector mysql = Main.getMySQLConnection();
