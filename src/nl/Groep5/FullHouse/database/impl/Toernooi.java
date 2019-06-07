@@ -202,7 +202,7 @@ public class Toernooi {
      */
     public boolean Update() throws SQLException {
         MySQLConnector mysql = Main.getMySQLConnection();
-        PreparedStatement ps = mysql.prepareStatement("UPDATE `toernooi` SET `naam`=?, `datum`=?, `beginTijd`=?, `eindTijd`=?, `beschrijving`=?, `maxInschrijvingen`=?, `inleg`=?, `uitersteInschrijfDatum`=?, `locatieID`=? WHERE `ID`='?';");
+        PreparedStatement ps = mysql.prepareStatement("UPDATE `toernooi` SET `naam`=?, `datum`=?, `beginTijd`=?, `eindTijd`=?, `beschrijving`=?, `maxInschrijvingen`=?, `inleg`=?, `uitersteInschrijfDatum`=?,  WHERE `ID`=?;");
         FillPrepareStatement(ps);
         ps.setInt(9, this.ID);
 
@@ -219,6 +219,7 @@ public class Toernooi {
         ps.setInt(6, this.maxInschrijvingen);
         ps.setDouble(7, this.inleg);
         ps.setDate(8, this.uitersteInschrijfDatum);
-        ps.setInt(9, this.locatieID);
+        //ps.setInt(9, this.locatieID);
+        ps.setInt(9, this.ID);
     }
 }

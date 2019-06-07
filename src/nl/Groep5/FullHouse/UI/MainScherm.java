@@ -378,8 +378,7 @@ public class MainScherm {
                                     validated = false;
                                     JOptionPane.showMessageDialog(frame, error.getMessage(),"Fout", JOptionPane.ERROR_MESSAGE);
                                 }
-                                if(validated) {
-                                    geselecteerdToernooi.Update();
+                                if(validated && geselecteerdToernooi.Update()) {
                                     JOptionPane.showMessageDialog(frame, "Bewerking succesvol uitgevoerd.","Bericht", JOptionPane.INFORMATION_MESSAGE);
                                 }
                                 break;
@@ -476,6 +475,7 @@ public class MainScherm {
             }
         });
     }
+
 
     public static DefaultTableModel bouwSpelerTabel(){
         Vector<String> kollomNamen = new Vector<>();
